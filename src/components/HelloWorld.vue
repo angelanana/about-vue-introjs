@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
+    <h1 id="hello-msg">{{ msg }}</h1>
     <p>
       For a guide and recipes on how to configure / customize this project,<br>
       check out the
@@ -12,7 +12,7 @@
       <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank" rel="noopener">eslint</a></li>
     </ul>
     <h3>Essential Links</h3>
-    <ul>
+    <ul class="ul">
       <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
       <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
       <li><a href="https://chat.vuejs.org" target="_blank" rel="noopener">Community Chat</a></li>
@@ -20,7 +20,7 @@
       <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
     </ul>
     <h3>Ecosystem</h3>
-    <ul>
+    <ul class="ul">
       <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
       <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
       <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
@@ -35,24 +35,55 @@ export default {
   name: 'HelloWorld',
   props: {
     msg: String
+  },
+  mounted () {
+    this.setGuide()
+  },
+  methods: {
+    setGuide() {
+      // 如果不写element的话，默认是全局
+      let data=[
+        {element: '.hello',intro: '步骤1：对应class为.step_1的元素进行选择提示。',position: 'right'},
+        {element: '#hello-msg',intro: '步骤2：对应Id为#step_2的元素进行选择提示。',position: 'left'},
+        {element: '.ul',intro: '步骤3：对应Iul的元素进行选择提示。',position: 'top'},
+      ]
+      this.$intro().setOptions({
+        prevLabel: "上一步",
+        nextLabel: "下一步",
+        skipLabel: "跳过",
+        doneLabel: "完成",
+        tooltipClass: 'customTooltip',
+        steps: data
+      }).oncomplete(()=> {
+        //点击结束按钮后执行的事件
+      }).onexit(()=> {
+        //点击跳过按钮后执行的事件
+      }).start()
+    },
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
+<style lang="sass" scoped>
+h3 
+  margin: 40px 0 0
+
+ul 
+  list-style-type: none
+  padding: 0
+
+li 
+  display: inline-block
+  margin: 0 10px
+
+a 
+  color: #42b983
+.intro-1
+  background: pink
+.intro-2
+  background: #4ab176
+.customTooltip
+  color: red
+  font-size: 18px
 </style>
