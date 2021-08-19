@@ -31,15 +31,22 @@
 </template>
 
 <script>
+import {homeIntro} from '@/utils/intro.ts'
 export default {
   name: 'HelloWorld',
   props: {
     msg: String
   },
   mounted () {
-    this.setGuide()
+    // this.setGuide()
+    this.set_homeguide()
   },
   methods: {
+    set_homeguide() {
+      homeIntro.start().oncomplete(() => {
+        // ...
+      })
+    },
     setGuide() {
       // 如果不写element的话，默认是全局
       let data=[
@@ -83,7 +90,7 @@ a
   background: pink
 .intro-2
   background: #4ab176
-.customTooltip
+.custom-tooltip
   color: red
   font-size: 18px
 </style>
