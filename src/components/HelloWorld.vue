@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import {homeIntro} from '@/utils/intro.ts'
+import {homeIntro} from '@/utils/intro.js'
 export default {
   name: 'HelloWorld',
   props: {

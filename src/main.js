@@ -1,11 +1,14 @@
 import Vue from 'vue'
 import App from './App.vue'
-import VueIntro from 'vue-introjs';
-import 'intro.js/introjs.css';
 import router from './router'
 
-Vue.config.productionTip = false
+import VueIntro from 'vue-introjs';
+import 'intro.js/introjs.css';
+
+
 Vue.use(VueIntro)
+
+Vue.config.productionTip = false
 
 new Vue({
   router,

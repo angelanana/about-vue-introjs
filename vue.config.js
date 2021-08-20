@@ -36,10 +36,6 @@ module.exports = {
         })
       ])
     }
-    config.plugin('provide').use(webpack.ProvidePlugin, [{
-      // other modules
-      introJs: ['intro.js']
-    }])    
     // 移除 prefetch 插件
     config.plugins.delete('prefetch')
     config.plugins.delete('preload')
@@ -61,6 +57,11 @@ module.exports = {
   productionSourceMap: false,
   configureWebpack: (config) => {
     if (process.env.NODE_ENV !== 'development' && process.env.NODE_ENV !== 'test') {
+      plugins: [
+        new webpack.ProvidePlugin({
+          introJs: ['intro.js', 'introJs']
+        })
+      ]
       // config.plugins.push(new CompressionWebpackPlugin({
       //   algorithm: 'gzip',
       //   test: new RegExp(`\\.(${productionGzipExtensions.join('|')})$`),
