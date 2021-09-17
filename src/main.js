@@ -2,11 +2,10 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 
-import VueIntro from 'vue-introjs';
-import 'intro.js/introjs.css';
+// import VueIntro from 'vue-introjs';
 
 
-Vue.use(VueIntro)
+// Vue.use(VueIntro)
 
 Vue.config.productionTip = false
 
